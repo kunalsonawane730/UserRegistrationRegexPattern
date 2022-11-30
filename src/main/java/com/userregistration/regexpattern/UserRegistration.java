@@ -19,6 +19,9 @@ public class UserRegistration {
         System.out.println("Enter mobile number: ");
         String mobileNumber = scanner.next();
         System.out.println(userInputValidation.isValidMobileNumber(mobileNumber) ? "Valid" : "In Valid");
+        System.out.println("Enetr password: ");
+        String password = scanner.next();
+        System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
         scanner.close();
 	}
 }
