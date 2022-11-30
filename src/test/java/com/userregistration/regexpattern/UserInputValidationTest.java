@@ -16,4 +16,17 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidFirstName("Pr");
         Assert.assertEquals(false, result);
     }
+    @Test
+    public void givenLastName_WhenProper_ShouldReturnTrue() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidLastName("Sonawane");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenLastName_WhenShort_ShouldReturnFalse() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidLastName("So");
+        Assert.assertEquals(false, result);
+}
 }
