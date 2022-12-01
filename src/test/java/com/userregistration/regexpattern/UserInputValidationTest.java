@@ -3,84 +3,163 @@ package com.userregistration.regexpattern;
 import org.junit.Assert;
 import org.junit.Test;
 
+import exceptions.InvalidEmailException;
+import exceptions.InvalidFirstNameException;
+import exceptions.InvalidLastNameException;
+import exceptions.InvalidMobileNumberException;
+import exceptions.InvalidPasswordException;
+
 public class UserInputValidationTest {
 	@Test
     public void givenFirstName_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidFirstName("Dipali");
+        boolean result = false;
+        try {
+        result = userInputValidation.isValidFirstName("Dipali");
         Assert.assertEquals(true, result);
+        } catch (InvalidFirstNameException e) {
+        }
     }
-    @Test
-    public void givenFirstName_WhenShort_ShouldReturnFalse() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidFirstName("Pr");
-        Assert.assertEquals(false, result);
-    }
-    @Test
-    public void givenLastName_WhenProper_ShouldReturnTrue() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidLastName("Sonawane");
-        Assert.assertEquals(true, result);
-    }
+	 @Test
+	    public void givenFirstName_WhenShort_ShouldThrowException() {
+	        UserInputValidation userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	        result = userInputValidation.isValidFirstName("Pr");
+	        } catch (InvalidFirstNameException e) {
+	        	Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	 }
+	 @Test
+	    public void givenLastName_WhenProper_ShouldReturnTrue() {
+		 UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidLastName("Kasthuri");
+	        } catch (InvalidLastNameException e) {
+	            Assert.assertEquals(true, result);
+	        }
+	    }
 
-    @Test
-    public void givenLastName_WhenShort_ShouldReturnFalse() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidLastName("So");
-        Assert.assertEquals(false, result);
-    }
-    @Test
-    public void givenEmail_WhenValid_ShouldReturnTrue() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidEmail("kunalsonawane730@gmail.com");
-        Assert.assertEquals(true, result);
-    }
+	    @Test
+	    public void givenLastName_WhenShort_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidLastName("Ka");
+	        } catch (InvalidLastNameException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
 
-    @Test
-    public void givenEmail_WhenNotValid_ShouldReturnFalse() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidEmail("Kunalsonawane..675.gmail.com");
-        Assert.assertEquals(false, result);
-    }
-    @Test
-    public void givenMobileNum_WhenProper_ShouldReturnTrue() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("9087654321");
-        Assert.assertEquals(true, result);
-    }
+	    @Test
+	    public void givenLastName_WithSplChar_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidLastName("K@sthuri");
+	        } catch (InvalidLastNameException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
 
-    @Test
-    public void givenMobileNum_WhenNotProper_ShouldReturnFalse() {
-        UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("908765-4321908");
-        Assert.assertEquals(false, result);
-    }
-    @Test
-    public void givenPassword_WhenValid_ShouldReturnTrue() {
-    	UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result =userInputValidation.isValidPassword("P@ssw0rd");
-        Assert.assertEquals(true, result);
-    }
+	    @Test
+	    public void givenLastName_WithNumber_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidLastName("K23thu6i");
+	        } catch (InvalidLastNameException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
 
-    @Test
-    public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() {
-    	UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidPassword("hgsuyds5ndj@");
-        Assert.assertEquals(false, result);
-    }
+	    @Test
+	    public void givenEmail_WhenValid_ShouldReturnTrue() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidEmail("kpragna.25@gmail.com");
+	        } catch (InvalidEmailException e) {
+	            Assert.assertEquals(true, result);
+	        }
+	    }
 
-    @Test
-    public void givenPassword_WithoutNumericValue_ShouldReturnFalse() {
-    	UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidPassword("bsdj@HhcsBB");
-        Assert.assertEquals(false, result);
-    }
+	    @Test
+	    public void givenEmail_WhenNotValid_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidEmail("Kpragna..675.gmail.com");
+	        } catch (InvalidEmailException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
 
-    @Test
-    public void givenPassword_WithoutSplChar_ShouldReturnFalse() {
-    	UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidFirstName("Pvhs5665vhj");
-        Assert.assertFalse( result);
-    }
+	    @Test
+	    public void givenMobileNum_WhenProper_ShouldReturnTrue() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidMobileNumber("9087654321");
+	        } catch (InvalidMobileNumberException e) {
+	            Assert.assertEquals(true, result);
+	        }
+	    }
+
+	    @Test
+	    public void givenMobileNum_WhenNotProper_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidMobileNumber("908765-4321908");
+	        } catch (InvalidMobileNumberException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void givenPassword_WhenValid_ShouldReturnTrue() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidPassword("P@ssw0rd");
+	        } catch (InvalidPasswordException e) {
+	            Assert.assertEquals(true, result);
+	        }
+	    }
+
+	    @Test
+	    public void givenPassword_WithoutCapitalLetter_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidPassword("hgsuyds5ndj@");
+	        } catch (InvalidPasswordException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void givenPassword_WithoutNumericValue_ShouldReturnFalse() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidPassword("bsdj@HhcsBB");
+	        } catch (InvalidPasswordException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void givenPassword_WithoutSplChar_ShouldThrowException() {
+	    	UserInputValidation  userInputValidation = new UserInputValidation();
+	        boolean result = false;
+	        try {
+	            result = userInputValidation.isValidPassword("Pvhs5665vhj");
+	        } catch (InvalidPasswordException e) {
+	            Assert.assertEquals("Please enter valid input.", e.getMessage());
+	        }
+}
 }
 

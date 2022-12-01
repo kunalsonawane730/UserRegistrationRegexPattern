@@ -1,10 +1,10 @@
 package com.userregistration.regexpattern;
 
-import java.util.Scanner;
+/*import java.util.Scanner;
 
-public class UserRegistration {
+/*public class UserRegistration {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		UserInputValidation userInputValidation = new UserInputValidation();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first name: ");
@@ -24,4 +24,4 @@ public class UserRegistration {
         System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
         scanner.close();
 	}
-}
+}*/
